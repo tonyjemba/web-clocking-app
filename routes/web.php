@@ -18,12 +18,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 
-//Authentication routes
 Route::post('login_user', [LoginController::class, 'login']);
-Route::post('logout', [LoginController::class, 'logout']);
+
 
 //users that are not authenticated are redirected to the login route
 Route::middleware('auth')->group(function(){
-    Route::get('/dashboard', [DashboardController::class, 'showDashboard']);
+    Route::get('dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
+    Route::post('logout', [LoginController::class, 'logout']);
+    Route::post('timein', [DashboardController::class,'timein']);
+
 });
 

@@ -33,4 +33,13 @@ class User extends Authenticatable
         'password',
     ];
 
+    /**
+     * creating a ONE TO ONE relationship between the user and the report model(user has one report)
+     */
+
+    public function Report()
+    {
+        return $this->hasOne(Report::class);
+    }
+
 }

@@ -5,6 +5,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class LoginController extends Controller
@@ -17,7 +18,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
 
-        //request data is validated
+        //request data is validated (returns e)
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -30,10 +31,10 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return Inertia::render('DashboardPage');
+            return Redirect::route('dashboard');
         }
 
-        //in case of any errors in the request data this error message is generated
+        //in case of any errors  in the request data  this error message is generated
         return back()->withErrors([
             'email' => 'The provided credentials do not match our records.',
         ]);

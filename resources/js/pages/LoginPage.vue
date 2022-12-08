@@ -1,6 +1,6 @@
 <script setup>
-import GoogleIcon from '../components/GoogleIcon.vue';
-import FacebookIcon from '../components/FacebookIcon.vue';
+import GoogleIcon from './components/GoogleIcon.vue';
+import FacebookIcon from './components/FacebookIcon.vue';
 import { useForm } from '@inertiajs/inertia-vue3';
 
 //two way binding of form data with user input

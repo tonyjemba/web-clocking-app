@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         //using query builder to insert first user in the database
         DB::table('users')->insert([
             'name' => 'trailanalytics',
-            'email' => 'info2@trailanalytics.com',
+            'email' => 'info@trailanalytics.com',
             'type' => 'admin',
             'password' => Hash::make('admin'),
         ]);
