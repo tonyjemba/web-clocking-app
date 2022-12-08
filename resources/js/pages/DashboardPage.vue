@@ -5,12 +5,19 @@ import ReportSection from './components/ReportSection.vue';
 import UserSection from './components/UserSection.vue';
 import { useDashboardSectionsStore } from '../Stores/dasboardSections';
 import {useReportStore} from '../Stores/reportStore';
+import { useUserStore } from '../Stores/userStore';
+
 //const props = defineProps(['registeredTimeIn'])
 //console.log(props.registeredTimeIn)
 
 //accessing store for conditionally rendering dashboard sections
 const store = useDashboardSectionsStore();
-const store2 = useReportStore()
+
+//report store
+const store2 = useReportStore();
+
+//userStore
+const store3 = useUserStore();
 
 //props with email and type of autenticated user
 const props = defineProps(['email', 'type', 'reportData', 'otherusers']);
@@ -22,6 +29,9 @@ const capitalizeFirstLetter = (string) => {
 
 //loading report data to pinia store
 store2.loadData(props.reportData);
+
+//loading user data to pinia store
+store3.loadData(props.otherusers);
 </script>
 <template>
     <Navigation :email="props.email" :type="props.type" />
