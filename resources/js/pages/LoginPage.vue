@@ -1,6 +1,16 @@
 <script setup>
 import GoogleIcon from '../components/GoogleIcon.vue';
 import FacebookIcon from '../components/FacebookIcon.vue';
+import {useForm} from '@inertiajs/inertia-vue3';
+
+let form = useForm({
+    email:'',
+    password:''
+})
+
+let submit = () => {
+    form.post('login');
+}
 </script>
 <template>
     <div class=" bg-light bg-gradient vh-100 vw-100">
@@ -12,21 +22,23 @@ import FacebookIcon from '../components/FacebookIcon.vue';
 
                         <h2 class="fw-bold mb-4  txtcolor pt-2">Sign In</h2>
 
-                        <div class="pt-4 pb-4">
+                        <form @submit.prevent="submit" class="pt-4 pb-4">
                             <div class="form-outline form-white mb-4">
-                                <input type="email" id="typeEmailX" class="form-control form-control-lg"
+                                <input v-model="form.email" type="email"  class="form-control form-control-lg"
                                     placeholder="Email" />
+                                    <div v-if="form.errors.email" v-text="form.errors.email" class="danger"></div>
                             </div>
 
                             <div class="form-outline form-white mb-4">
-                                <input type="password" id="typePasswordX" class="form-control form-control-lg"
+                                <input v-model="form.password" type="password" id="typePasswordX" class="form-control form-control-lg"
                                     placeholder="Password" />
+                                    <div v-if="form.errors.password" v-text="form.errors.password"></div>
                             </div>
 
                             <div class=" w-100 d-flex justify-content-end">
-                                <button type="button" class="btn btn-primary btn-lg ">Login to Clocking</button>
+                                <button type="submit" class="btn btn-primary btn-lg " :disabled="form.processing">Login to Clocking</button>
                             </div>
-                        </div>
+                        </form>
 
 
                         <div class="">
@@ -67,5 +79,8 @@ color: #ffffff !important;
 
 .cursorp {
     cursor: pointer;
+}
+.danger{
+    color: red;
 }
 </style>

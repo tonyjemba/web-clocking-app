@@ -7,7 +7,7 @@ import EditUserSection from '../components/EditUserSection.vue';
 </script>
 <template>
     <Navigation />
-    <EditUserSection/>
+    <TimeSection/>
 
 </template>
 

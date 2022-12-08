@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +16,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::redirect('/', 'login');
-Route::get('/login', [LoginController::class, 'showLoginForm']);
-Route::post('/register', [RegisterController::class, 'registeruser']);
+Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('login', [LoginController::class, 'login']);
+Route::post('logout', [LoginController::class, 'logout']);
+
+//users that are not authenticated are redirected to the login route
+Route::middleware('auth')->group(function(){
+    Route::get('/dashboard', [DashboardController::class, 'showDashboard']);
+});
+

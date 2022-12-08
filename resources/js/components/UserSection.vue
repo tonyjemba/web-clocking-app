@@ -30,8 +30,7 @@ import UserTable from '../components/UserTable.vue';
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="name" class="form-label fw-bold">Name</label>
-                            <input type="text" class="form-control form-control-lg" id="name"
-                                placeholder="Full Name">
+                            <input type="text" class="form-control form-control-lg" id="name" placeholder="Full Name">
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label fw-bold">Email address</label>
@@ -67,7 +66,7 @@ import UserTable from '../components/UserTable.vue';
                 </div>
             </div>
         </div>
-
+      
 
 
     </div>

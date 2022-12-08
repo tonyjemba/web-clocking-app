@@ -1,3 +1,8 @@
+<script setup>
+import { Inertia } from '@inertiajs/inertia';
+
+let logout = ()=> Inertia.post('logout')
+</script>
 <template>
     <nav class="navbar navbar-dark bg-primary txtcolor ">
         <div class="container ">
@@ -9,7 +14,7 @@
                 <div class=" d-flex w-25  align-items-center justify-content-between ">
                     <div class="fw-bold cuspointer">Report</div>
                     <div class="fw-bold cuspointer">Users</div>
-                    <div class="fw-bold cuspointer">LogOut</div>
+                    <div class="fw-bold cuspointer" @click="logout">LogOut</div>
                 </div>
             </div>
         </div>
