@@ -1,6 +1,6 @@
 <script setup>
 import ReportTable from './ReportTable.vue';
-
+import moment  from 'moment';
 const props = defineProps(['email', 'type'])
 </script>
 <template>
@@ -31,7 +31,7 @@ const props = defineProps(['email', 'type'])
             </div>
         </div>
         <div class="d-flex flex-column  flex-fill">
-            <div class="mb-4 fs-5">Logs for Oct,2016</div>
+            <div class="mb-4 fs-5">Logs for {{ moment().format("MMM, YYYY") }}</div>
             <div>
                 <ReportTable />
             </div>
