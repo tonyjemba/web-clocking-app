@@ -1,6 +1,22 @@
 <script setup>
 import AddIcon from '../components/AddIcon.vue';
 import UserTable from '../components/UserTable.vue';
+import { useForm } from '@inertiajs/inertia-vue3';
+
+//two way binding of form data with user input
+let form = useForm({
+    name: '',
+    email: '',
+    password: '',
+    type: ''
+})
+
+//onsumit make a post request to add user 
+let submit = () => {
+    form.post('adduser')
+    //clearing form
+    this.$refs.adduser.reset()
+}
 </script>
 <template>
     <div class="vw-100  container cont ">
@@ -28,46 +44,48 @@ import UserTable from '../components/UserTable.vue';
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="mb-3">
-                            <label for="name" class="form-label fw-bold">Name</label>
-                            <input type="text" class="form-control form-control-lg" id="name" placeholder="Full Name">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label fw-bold">Email address</label>
-                            <input type="email" class="form-control form-control-lg" id="exampleInputEmail1"
-                                aria-describedby="emailHelp" placeholder="email">
-                        </div>
-                        <div class="mb-3">
-                            <label for="exampleInputPassword1" class="form-label fw-bold">Password</label>
-                            <input type="password" class="form-control form-control-lg" id="exampleInputPassword1"
-                                placeholder="Password">
-                        </div>
-                        <div class="d-flex flex-row ">
-                            <div>
-                                <input type="radio" id="html" name="role" value="HTML">
-                                <label for="html" class="lef">Admin</label>
+                        <form @submit.prevent="submit" ref="adduser">
+                            <div class="mb-3">
+                                <label for="name" class="form-label fw-bold">Name</label>
+                                <input v-model="form.name" type="text" class="form-control form-control-lg" id="name"
+                                    placeholder="Full Name">
                             </div>
-                            <div class=" space">
-                                <input type="radio" id="html" name="role" value="HTML" checked>
-                                <label for="html" class="lef">User</label>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label fw-bold">Email address</label>
+                                <input type="email" v-model="form.email" class="form-control form-control-lg" id="exampleInputEmail1"
+                                    aria-describedby="emailHelp" placeholder="email">
                             </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer ">
-                        <button type="button" class="btn btn-secondary btn-lg" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary btn-lg">
-                            <div class=" d-flex align-items-center">
-                                <AddIcon />
-                                Add User
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label fw-bold">Password</label>
+                                <input type="password" v-model="form.password" class="form-control form-control-lg" id="exampleInputPassword1"
+                                    placeholder="Password">
                             </div>
-                        </button>
-
+                            <div class="d-flex flex-row ">
+                                <div>
+                                    <input type="radio" v-model="form.type" id="html" name="role" value="admin">
+                                    <label for="html" class="lef">Admin</label>
+                                </div>
+                                <div class=" space">
+                                    <input type="radio" id="html2" v-model="form.type" name="role" value="user" checked>
+                                    <label for="html2" class="lef">User</label>
+                                </div>
+                            </div>
+                            <div class="modal-footer ">
+                                <button type="button" class="btn btn-secondary btn-lg"
+                                    data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary btn-lg" data-bs-dismiss="modal" :disabled="form.processing">
+                                    <div class=" d-flex align-items-center">
+                                        <AddIcon />
+                                        Add User
+                                    </div>
+                                </button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </div>
-      
 
+        </div>
 
     </div>
 </template>

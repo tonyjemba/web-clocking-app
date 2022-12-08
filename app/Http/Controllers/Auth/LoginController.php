@@ -20,7 +20,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
 
-        //request data is validated (returns e)
+        //request data is validated (returns error for invalid input)
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],

@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,5 +37,8 @@ Route::middleware('auth')->group(function(){
 
     //this route gets the report section data
     Route::get('report',[DashboardController::class, 'reportdata']);
+
+    //route for adding user
+    Route::post('adduser',[UserController::class,'addUser']);
 });
 
