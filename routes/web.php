@@ -26,9 +26,15 @@ Route::post('dashboard', [LoginController::class, 'login']);
 Route::middleware('auth')->group(function(){
     Route::get('dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
     Route::post('logout', [LoginController::class, 'logout']);
+    //this route registers time in
     Route::post('timein', [DashboardController::class,'timein']);
+
+    //this route registers time out
     Route::post('timeout', [DashboardController::class, 'timeout']);
+    
     Route::get('isRegisteredIn',[DashboardController::class, 'isRegisteredIn']);
 
+    //this route gets the report section data
+    Route::get('report',[DashboardController::class, 'reportdata']);
 });
 

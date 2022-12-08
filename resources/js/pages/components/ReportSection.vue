@@ -1,5 +1,7 @@
 <script setup>
 import ReportTable from './ReportTable.vue';
+
+const props = defineProps(['email', 'type'])
 </script>
 <template>
     <div class="vw-100  container d-flex cont ">
@@ -8,8 +10,8 @@ import ReportTable from './ReportTable.vue';
            
             <div class="card" style="width: 18rem;">
                 <div class="card-body cardbg cursorp txtclor">
-                    <h5 class="card-title fw-bold">Admin</h5>
-                    <p class="card-text">tony@gmail.com</p>
+                    <h5 class="card-title fw-bold">{{props.type}}</h5>
+                    <p class="card-text">{{props.email}}</p>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item   d-flex  flex-column cursorp ">

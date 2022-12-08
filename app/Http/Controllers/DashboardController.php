@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Report;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+
 
 
 class DashboardController extends Controller
@@ -34,9 +37,7 @@ class DashboardController extends Controller
     {
 
         Report::where('timeout', 'waiting...')
-        ->update(['timeout' => $request->time]);
-
-
+            ->update(['timeout' => $request->time]);
     }
 
     //checks whether the user has registered time in or not
@@ -44,7 +45,26 @@ class DashboardController extends Controller
     {
         $registered = Report::where('timeout', 'LIKE', 'waiting...')->exists();
 
-        return Inertia::render('DashboardPage',['registeredTimeIn' => $registered]);
+        return Inertia::render('DashboardPage', ['registeredTimeIn' => $registered]);
+    }
 
+    //get report section data
+    public function reportdata()
+    {
+
+        //all data from the reports table
+        $reportData = Report::select('date', 'timein', 'timeout')->get()->toJson();
+        
+        //authenticated user email
+        $email = Auth::user()->email;
+
+        //type of authenticated user
+        $type = Auth::user()->type;
+
+        //other users
+        $otherUsers = User::all()->except(Auth::id())->toJson();
+
+        //returns to dashboard with data as props
+        return Inertia::render('DashboardPage', ['reportData' => $reportData, 'email' => $email,'otherusers'=>$otherUsers, 'type'=>$type]);
     }
 }

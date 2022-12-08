@@ -1,13 +1,17 @@
 <script setup>
 import { Inertia } from '@inertiajs/inertia';
-import { useDashboardSectionsStore } from '../../Store/dasboardSections';
+import { useDashboardSectionsStore } from '../../Stores/dasboardSections';
 
 const store = useDashboardSectionsStore();
 
 let logout = ()=> Inertia.post('logout')
 const props = defineProps(['email', 'type'])
 
-const report = () => store.toReportSection()
+const report = () => {
+    store.toReportSection()
+    Inertia.get('report')
+
+}
 const users = () => store.toUserSection()
 const time = () => store.toTimeSection()
 </script>
