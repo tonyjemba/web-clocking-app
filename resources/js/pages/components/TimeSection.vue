@@ -2,11 +2,19 @@
 import moment from 'moment';
 import { Inertia } from '@inertiajs/inertia';
 
-const time = moment().format('HH:mm');
-const date = moment().format("ddd, d/MMM/YY");
+let time = moment().format('HH:mm');
+let date = moment().format("ddd, d/MMM/YY");
 
 const registerTimeIn = () =>{
-    Inertia.post('timein', { date: moment().format("ddd, d/MMM/YYYY"), time: moment().format('HH:mm:ss')+" Hrs" })
+    time = moment().format('HH:mm')
+    date = moment().format("ddd, d/MMM/YY");
+    Inertia.post('timein', { date: moment().format("ddd, d/MMM/YYYY"), time: moment().format('HH:mm:ss')+" Hrs" });
+}
+const registerTimeOut = () =>{
+    time = moment().format('HH:mm')
+    date = moment().format("ddd, d/MMM/YY");
+    Inertia.post('timeout', { time: moment().format('HH:mm:ss') + " Hrs" });
+
 }
 </script>
 <template>
@@ -15,6 +23,7 @@ const registerTimeIn = () =>{
         <div class=" text-muted">{{date}}</div>
         <div class="pt-4">
             <button type="button" class="btn btn-primary" @click="registerTimeIn">Time In</button>
+            <button type="button" class="btn btn-danger" @click="registerTimeOut">Time Out</button>
         </div>
     </div>
 </template>

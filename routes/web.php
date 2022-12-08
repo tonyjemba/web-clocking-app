@@ -26,6 +26,8 @@ Route::middleware('auth')->group(function(){
     Route::get('dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
     Route::post('logout', [LoginController::class, 'logout']);
     Route::post('timein', [DashboardController::class,'timein']);
+    Route::post('timeout', [DashboardController::class, 'timeout']);
+
 
 });
 
