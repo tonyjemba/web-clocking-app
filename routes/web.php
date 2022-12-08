@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('login', [LoginController::class, 'login']);
+
+//Authentication routes
+Route::post('login_user', [LoginController::class, 'login']);
 Route::post('logout', [LoginController::class, 'logout']);
 
 //users that are not authenticated are redirected to the login route
