@@ -1,18 +1,19 @@
 <script setup>
 import moment from 'moment';
 import { Inertia } from '@inertiajs/inertia';
+import {ref} from 'vue'
 
-let time = moment().format('HH:mm');
-let date = moment().format("ddd, d/MMM/YY");
+let time = ref(moment().format('HH:mm'));
+let date = ref(moment().format("ddd, d/MMM/YY"));
 
 const registerTimeIn = () =>{
-    time = moment().format('HH:mm')
-    date = moment().format("ddd, d/MMM/YY");
+    time.value = moment().format('HH:mm')
+    date.value = moment().format("ddd, d/MMM/YY");
     Inertia.post('timein', { date: moment().format("ddd, d/MMM/YYYY"), time: moment().format('HH:mm:ss')+" Hrs" });
 }
 const registerTimeOut = () =>{
-    time = moment().format('HH:mm')
-    date = moment().format("ddd, d/MMM/YY");
+    time.value = moment().format('HH:mm')
+    date.value = moment().format("ddd, d/MMM/YY");
     Inertia.post('timeout', { time: moment().format('HH:mm:ss') + " Hrs" });
 
 }
