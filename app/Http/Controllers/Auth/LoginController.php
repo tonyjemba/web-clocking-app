@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers\Auth;
+
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -13,7 +15,7 @@ class LoginController extends Controller
     public function showLoginForm()
     {
         //this is the vue component
-        return Inertia::render('LoginPage');   
+        return Inertia::render('LoginPage');
     }
     public function login(Request $request)
     {
@@ -30,8 +32,8 @@ class LoginController extends Controller
         */
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-
-            return Redirect::route('dashboard');
+            //navigate to the dasboard with the athenticated user email and type
+            return inertia('DashboardPage', ['email' => Auth::user()->email, 'type' => Auth::user()->type]);
         }
 
         //in case of any errors  in the request data  this error message is generated
@@ -39,7 +41,7 @@ class LoginController extends Controller
             'email' => 'The provided credentials do not match our records.',
         ]);
     }
-    
+
     public function logout(Request $request)
     {
         //logs out user, cancels session

@@ -11,7 +11,7 @@ let form = useForm({
 
 //on form submit a post request is made to login the user via the LoginController login function
 let submit = () => {
-    form.post('login_user');
+    form.post('dashboard');
 }
 </script>
 <template>

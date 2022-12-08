@@ -38,4 +38,13 @@ class DashboardController extends Controller
 
 
     }
+
+    //checks whether the user has registered time in or not
+    public function isRegisteredIn()
+    {
+        $registered = Report::where('timeout', 'LIKE', 'waiting...')->exists();
+
+        return Inertia::render('DashboardPage',['registeredTimeIn' => $registered]);
+
+    }
 }
