@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function(){
     //route for adding user
     Route::post('adduser',[UserController::class,'addUser']);
 
-    //rout to delete user
+    //route to delete user
     Route::post('deleteUser', [UserController::class, 'deleteUser']);
 });
 
