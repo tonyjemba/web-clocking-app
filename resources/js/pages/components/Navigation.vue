@@ -12,7 +12,7 @@ const report = () => {
     Inertia.get('report')
 
 }
-const users = () => store.toUserSection()
+const users = () => {store.toUserSection()}
 const time = () => store.toTimeSection()
 </script>
 <template>

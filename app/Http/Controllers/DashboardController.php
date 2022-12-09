@@ -45,7 +45,7 @@ class DashboardController extends Controller
     {
         $registered = Report::where('timeout', 'LIKE', 'waiting...')->exists();
 
-        return Inertia::render('DashboardPage', ['registeredTimeIn' => $registered]);
+        //return Inertia::render('DashboardPage', ['registeredTimeIn' => $registered]);
     }
 
     //get report section data
@@ -63,7 +63,6 @@ class DashboardController extends Controller
 
         //other users
         $otherUsers = User::all()->except(Auth::id())->toJson();
-
         //returns to dashboard with data as props
         return Inertia::render('DashboardPage', ['reportData' => $reportData, 'email' => $email,'otherusers'=>$otherUsers, 'type'=>$type]);
     }

@@ -7,6 +7,7 @@ import { useDashboardSectionsStore } from '../Stores/dasboardSections';
 import {useReportStore} from '../Stores/reportStore';
 import { useUserStore } from '../Stores/userStore';
 
+
 //const props = defineProps(['registeredTimeIn'])
 //console.log(props.registeredTimeIn)
 
@@ -31,7 +32,7 @@ const capitalizeFirstLetter = (string) => {
 store2.loadData(props.reportData);
 
 //loading user data to pinia store
-store3.loadData(props.otherusers);
+store3.$patch((state)=> state.userData = props.otherusers);
 </script>
 <template>
     <Navigation :email="props.email" :type="props.type" />

@@ -2,6 +2,7 @@
 import GoogleIcon from './components/GoogleIcon.vue';
 import FacebookIcon from './components/FacebookIcon.vue';
 import { useForm } from '@inertiajs/inertia-vue3';
+import { Inertia } from '@inertiajs/inertia';
 
 //two way binding of form data with user input
 let form = useForm({

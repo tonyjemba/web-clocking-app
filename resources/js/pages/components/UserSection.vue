@@ -14,8 +14,7 @@ let form = useForm({
 //onsumit make a post request to add user 
 let submit = () => {
     form.post('adduser')
-    //clearing form
-    this.$refs.adduser.reset()
+
 }
 </script>
 <template>
@@ -44,7 +43,7 @@ let submit = () => {
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form @submit.prevent="submit" ref="adduser">
+                        <form @submit.prevent="submit" >
                             <div class="mb-3">
                                 <label for="name" class="form-label fw-bold">Name</label>
                                 <input v-model="form.name" type="text" class="form-control form-control-lg" id="name"

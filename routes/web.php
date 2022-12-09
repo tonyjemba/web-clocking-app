@@ -33,12 +33,15 @@ Route::middleware('auth')->group(function(){
     //this route registers time out
     Route::post('timeout', [DashboardController::class, 'timeout']);
     
-    Route::get('isRegisteredIn',[DashboardController::class, 'isRegisteredIn']);
+    //Route::get('isRegisteredIn',[DashboardController::class, 'isRegisteredIn']);
 
     //this route gets the report section data
     Route::get('report',[DashboardController::class, 'reportdata']);
 
     //route for adding user
     Route::post('adduser',[UserController::class,'addUser']);
+
+    //rout to delete user
+    Route::post('deleteUser', [UserController::class, 'deleteUser']);
 });
 

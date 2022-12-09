@@ -11,9 +11,8 @@ class UserController extends Controller
 {
     public function addUser(Request $request)
     {
-
         //Only users of type admin will add users
-        if (Auth::user()->type !== 'admin') {
+        if (Auth::user()->type != 'admin') {
             return Inertia::render('DashboardPage', ['message' => 'You are not Admin, you cannot add user account']);
         }
 
@@ -36,7 +35,14 @@ class UserController extends Controller
 
         $user->save();
 
-        return Inertia::render('DashboardPage', ['message' => 'User account created successfully']);
-        
+    }
+
+    public function deleteUser(Request $request)
+    {
+        $id = $request->data['id'];
+        $user = User::where('id',$id);
+
+        $user->delete();
+
     }
 }
